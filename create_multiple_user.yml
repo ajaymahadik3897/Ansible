@@ -1,0 +1,11 @@
+---
+- name: create multiple user with variable
+  hosts: all
+  become: yes
+  tasks:
+  - name: cretaing user
+    user: name='{{ item }}' state=present
+    with_items:
+      - anna
+      - balu
+    

@@ -1,0 +1,12 @@
+---
+- name: copy file from server to nodes
+  hosts: all
+  become: yes
+  tasks:
+  - name: copu index file
+    copy: 
+     src: /home/Raj/index.html
+     dest: /home/Raj/             #if we want to change name add new name
+     mode: 0777
+     owner: Raj
+

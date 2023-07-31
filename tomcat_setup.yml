@@ -1,0 +1,41 @@
+---
+- name: setup tomcat
+  hosts: all
+  become: yes
+  tasks:
+  - name: installing java in Redhat
+    yum:
+      name: java
+      state: installed
+    when: ansible_os_family == "Redhat"
+
+  - name: installing java in Debian
+    apt:
+      name: default-jdk
+      state: present
+    when: ansible_os_family == "Debian"
+
+  - name: tomcat download
+    get_url:
+      url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
+      dest: /opt
+
+  - name: extract tomcat
+    unarchive:
+      src: /opt/apache-tomcat-9.0.78.tar.gz
+      dest: /opt
+      remote_src: yes
+
+  - name: add executable permissions
+    file:
+      path: /opt/apache-tomcat-9.0.78/bin/startup.sh
+      mode: 0777
+
+  - name: start tomcat service
+    service:
+        name: tomcat 
+        state: started
+        enabled: true
+        daemon_reload: true
+     
+

@@ -1,0 +1,15 @@
+---
+- name: installed and start httpd service
+  hosts: all
+  become: yes
+  tasks:
+  - name: stopping package    #not needed we can direct remove also
+    service:
+      name: httpd
+      state: stopped
+
+  - name: installing httpd
+    yum:
+      name: httpd
+      state: absent
+

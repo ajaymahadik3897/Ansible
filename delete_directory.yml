@@ -1,0 +1,10 @@
+---
+- name: Testing a playbook for deleting  a directory
+  hosts: all
+  become: yes
+  tasks:
+  - name: deleting  a directory
+    file:
+      path: /home/Raj/dir1    #path and directory name
+      state: absent           #absent means deleting
+

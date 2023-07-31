@@ -1,0 +1,9 @@
+---
+- name: Testing a playbook for creating a file
+  hosts: all
+  become: yes
+  tasks:
+  - name: creating a file
+    file:
+      path: /home/Raj/demofile
+      state: touch             #create empty file 

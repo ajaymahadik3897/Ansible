@@ -1,0 +1,9 @@
+---
+- name: Testing a playbook for creating a directory
+  hosts: all
+  become: yes
+  tasks:
+  - name: creating a directory
+    file:
+      path: /home/Raj/dir1
+      state: directory
